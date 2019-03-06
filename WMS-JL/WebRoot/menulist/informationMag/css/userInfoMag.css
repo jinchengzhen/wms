@@ -1,0 +1,35 @@
+
+/*字体设置*/
+.text-reflect-base{    color: palegreen; -webkit-box-reflect:below 10px;}
+.text{  width: 300px; height: 200px; position: absolute;  left: 50%;    margin-left: -150px;    background-image: -webkit-linear-gradient(left,blue,#66ffff 10%,#cc00ff 20%,#CC00CC 30%, #CCCCFF 40%, #00FFFF 50%,#CCCCFF 60%,#CC00CC 70%,#CC00FF 80%,#66FFFF 90%,blue 100%);-webkit-text-fill-color: transparent;/* 将字体设置成透明色 */ -webkit-background-clip: text;/* 裁剪背景图，使文字作为裁剪区域向外裁剪 */ -webkit-background-size: 200% 100%;  -webkit-animation: masked-animation 4s linear infinite; font-size: 35px;}
+.font{font-family:"微软雅黑";font-size: 16px;color: white;}
+
+.condition{float: left;    width: 20%;    height: 100%;padding: 1.4% 0% 0% 0%;}
+.condition input{}
+.condition button{}
+
+.importblock{width: 100%;    height: 6%;padding: 0.5% 3% 0% 0%;}
+
+
+.adduserInfo-table tr td span{float: right;}
+.adduserInfo-table tr td input,select{width: 68%; height: 40%;}
+
+
+#space_su{width: 95px;}
+
+.userlist table thead tr th{border-radius:5px; }
+
+
+#as_block{    margin-top: -41.5%;height: 75%;}
+.font-menu{font-family:"微软雅黑";font-size: 22px;color: green;}
+.main-block{width:100%;height: 100%;padding: 1% 14% 0% 12%;float: left;display:table-cell;vertical-align:middle;text-align:center;}
+.menulist-block{width:100%;height: 100%;float: left;display:table-cell;vertical-align:middle;text-align:center;}
+.menutitle{width:99.5%;height: 98px;padding: 3px 2% 3px 0%;float: left;display:table-cell;vertical-align:middle;text-align:center;margin: 0.2%;margin-top: 0.4%;background-color: aliceblue;border-top: 10px solid #97cece;}
+
+.menuparent{width:3%;height: 100%;padding: 0% 0.5% 0% 0.5%;float: left;display:table-cell;vertical-align:middle;text-align:center;background-color: darkslategray;font-size: 14px; font-weight: bold;color: #fbff00;}
+.menublock{cursor:pointer;width:10%;height: 100%;padding: 0.5% 2% 2% 2%;float: left;display:table-cell;vertical-align:middle;text-align:center;border: 4px solid forestgreen;margin-left: 0.5%;background-color: gainsboro; border-radius: 15px;}
+.menublock input{position: absolute;    margin-top: 2%;    margin-left: 1%;    width: 22px;    height: 22px;}
+
+#loginAut{position: absolute;width: 4%; height: 4%; margin-left: 26%;}
+#loginAut_tip{position: absolute; margin-left: 19.5%; margin-top: 0.3%; color: red;}
+

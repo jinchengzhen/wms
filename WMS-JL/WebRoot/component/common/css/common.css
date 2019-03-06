@@ -1,0 +1,39 @@
+body{overflow: hidden;background-color:white;}
+div{box-sizing:border-box;word-wrap: break-word;}
+ul li{ list-style: none; margin: 0px; padding: 0px; cursor: pointer;position:relative;}
+table{width: 100%; height: 100%;position: relative;overflow:hidden;text-align: center;}
+.table{display: table-cell;vertical-align: middle;text-align: center;}
+.space{width: 70px;display: inline-block;}
+/* 字体样式 */
+
+
+/* 蒙层 */
+.common-black{display:none;position: absolute;width: 100%;height: 100%;background-color: #9696967a;z-index: 1000;}
+/* 弹窗样式-1 */
+.pop-window-1{display:none;position: absolute;width: 32%;height: 44%;z-index: 1001;margin-left: 31%;margin-top: -36%;background-color: #cbf5ed;border: 1px solid red;}
+/* 弹窗样式-2 */
+.pop-window-2{display:none;position: absolute;width: 55%;height: 64%;z-index: 1001;margin-left: 20%;margin-top: -39.5%;background-color: #cbf5ed;border: 1px solid red;}
+.pop-title-block{width: 100%;height: 8%;background-color: #784556;}
+.pop-body-block{width: 100%;height: 80%;}
+.pop-option-block{width: 100%;height: 12%;padding: 1.5% 30%;}
+.pop-option-block input{width: 30%; height: 100%;}
+.pop-title-info{width: 95%;height: 100%;float: left;}
+.pop-title-quit{width: 5%;height: 100%;float: right;padding: 0.7%;}
+.quit-x{width: 100%;height: 100%;background: url("../../../static/images/x.png"); background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;}
+#quit_2{padding: 1% 1.3%;}
+/* body样式-1 */
+.common-title{width: 100%;height: 100px;z-index: 999;}
+.common-body{width: 100%;height: 600px;z-index: 999;}
+.common-foot{width: 100%;height: 100px;z-index: 999;padding: 1%;}
+
+.titletext{line-height: 36px;font-size: 16px;font-weight: bold;color: white;}
+.import{float: right;border-bottom: 1px solid black; cursor: pointer;}
+.import:hover{border-bottom: 1px solid blue; color: blue;}
+.select-tr:hover{background-color: yellow;}
+.option{display: inline-block;margin: 1%;cursor: pointer;border-bottom: 1px solid black;}
+.option:hover{border-bottom: 1px solid blue;color: blue;}
+.page-info{float: left;    width: 40%;    height: 100%;padding: 0.5%;}
+.page-info span{display: inline-block;    width: 10%;    height: 100%;}
+.pageturn{float: left;    width: 50%;    height: 100%;padding: 0% 3% 1% 0%;}
+.pageturn .pageopt{float: left;    width: 14%;    height: 100%;cursor: pointer;border: 2px solid black;margin-left: 1%;padding: 1%;border-radius: 6px;background-color: #23badc7d;}
+.pageopt:hover{background-color: blue;}

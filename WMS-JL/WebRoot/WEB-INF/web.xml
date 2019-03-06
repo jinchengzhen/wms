@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>WMS-JL</display-name>
+  <!-- 监听器配置 -->
+  <listener>
+    <listener-class>com.wms.listener.ZookeeperRegListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>com.wms.listener.OnlineUserListener</listener-class>
+  </listener>
+  <servlet>
+    <servlet-name>springDispatcherServlet</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:springmvc.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>springDispatcherServlet</servlet-name>
+    <url-pattern>*.spring</url-pattern>
+  </servlet-mapping>
+  
+  <welcome-file-list>
+    <welcome-file>wms.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- session过期时间 -->
+  <session-config>
+    <session-timeout>15</session-timeout>
+  </session-config>
+  
+  
+</web-app>
