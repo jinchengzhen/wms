@@ -39,6 +39,7 @@
 	<script type="text/javascript" src="../../IFrame/js/script.js"></script>
 	<script type="text/javascript" src="../../IFrame/js/login.js"></script>
 	<script type="text/javascript" src="../../component/common/js/common.js"></script>
+	<script type="text/javascript" src="../../component/common/js/load.js"></script>
     </head>
   <body>
     <div class="login">

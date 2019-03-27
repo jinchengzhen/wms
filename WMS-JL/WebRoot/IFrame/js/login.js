@@ -1,6 +1,7 @@
 var loginer = null;//登录信息
 //登录
 function login(){
+	var openid = $.openLoadForm({ gif:'/WMS-JL/static/gif/load.gif', msg:'正在登录...'   });
 	var url = "system/login.spring";
 	var userID = $("#userID").val();
 	var orgPwd = $("#password").val();
@@ -15,6 +16,7 @@ function login(){
 	$.post(url,args,function(data){
 		loginer = JSON.parse(data);
 		var mag = loginer.message;
+		$.closeLoadForm(openid);
 		if(loginer.state == 1){
 			location.href = mag;
 		}else{

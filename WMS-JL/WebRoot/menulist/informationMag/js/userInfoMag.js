@@ -40,7 +40,7 @@ function clearSearchInfo(){
 }
 /*------------查询单人信息-------------*/
 function searchUser(userID){
-	var url = basepath+"select/selectuser.spring";
+	var url = basepath+"select/userdetail.spring";
 	var args = {"userID":userID};
 	$.post(url,args,function(data){
 		var jsonobj = JSON.parse(data);

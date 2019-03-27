@@ -1,6 +1,7 @@
 var basepath;
 $(function(){
 	basepath = $("#basePath").attr("basePath");
+	$("#all").clcik();
 	searchInfo();
 });
 /*--------------按条件查询-----------------*/
@@ -103,71 +104,8 @@ function update_userInfo(){
 	})
 }
 
-/*------------菜单修改-------------*/
-//菜单查看、修改
-function setAutLimit(userID){
-	var url = basepath +"select/getworkcontent.spring";
-	var args = {"userID":userID};
-	$.post(url,args,function(data){
-		var jsonobj = JSON.parse(data);
-		var menuarray = [jsonobj.A,jsonobj.B,jsonobj.C,jsonobj.D,jsonobj.E];
-		var htmlstr_2 = "";
-		for(var i = 0;i < menuarray.length;i++ ){
-			var menuobj = menuarray[i];
-			if(menuobj != undefined){
-				htmlstr_2 += "<div class=\"menutitle\"><div class=\"menuparent\" url=\""+menuobj.menuUrl+"\" >"+menuobj.menuName+"</div>";
-				if(menuobj.childmenu != null){
-					for(var l = 0;l < menuobj.childmenu.length;l++){
-						var childobj = menuobj.childmenu[l];
-						htmlstr_2 += "<div class=\"menublock\" >"+childobj.menuName+"<input type=\"checkbox\" name=\"menubox\" id=\""+childobj.id+"\"";
-						if(childobj.state == '1'){
-							htmlstr_2 += "checked=\"checked\" "
-						}
-						htmlstr_2 += "></div>";
-					}
-				}
-				htmlstr_2 += "</div>";
-			}
-		}
-		$("#menulist").html(htmlstr_2);
-		$("#menu_set").attr("user",userID);
-		show_menuUpdate();
-	});
-}
-function updateWorkcontent(userID){
-	var workstr = "";
-	$("input[name='menubox']").each(function(){
-		if(this.checked){
-			workstr += $(this).attr("id")+"-";
-		}
-	});
-	var loginAutobj = document.getElementById('loginAut');
-	var loginAut = "1";
-	if(loginAutobj.checked){
-		loginAut = "0";
-	}
-	var url = basepath +"update/setuserAut.spring";
-	var args = {"userID":userID,"workcontent":workstr.substring(0,workstr.length-1),"userAut":loginAut};
-	$.post(url,args,function(data){
-		var jsonobj = JSON.parse(data);
-		msg(jsonobj.message);
-	});
-}
-/*------------菜单修改-------------*/
 
 
-/*---------------删除人员----------------*/
-function delete_userInfo(userID){
-	var url = basepath+"delete/user.spring";
-	var args = {"userID":userID};
-	$.post(url,args,function(data){
-		var jsonobj = JSON.parse(data);
-		alert(jsonobj.message);
-		if(jsonobj.state == "1"){
-			searchInfo();
-		}
-	});
-}
 /*-------------新增处理--------------------*/
 /*------正则匹配表达式----*/
 var chinesechar = /[\u4e00-\u9fa5]+/;//匹配中文字符
@@ -199,6 +137,23 @@ function deal_add(){
 		alert("新增信息有误！");
 	}
 }
+/*--------------审批--------------*/
+function deal_approve(){
+	
+}
+
+
+/*------------设置状态------------*/
+function select_status(obj){
+	$(".select-opntion").each(function(){
+		$(this).css("background-color","cornflowerblue");
+		$(this).css("color","black");
+	})
+	obj.css("background-color","#5757d8")
+	obj.css("color","lightgoldenrodyellow")
+}
+
+
 /*------------导出xls------------*/
 function exportXls(){
 	var userName = $("#search_userName").val();
@@ -214,27 +169,24 @@ function exportXls(){
 //打开新增弹窗
 function show_add_pop(){
 	$("#black_block").css("display","block");
-	$("#add_userinfo_block").css("display","block");
+	$("#add_apply_block").css("display","block");
 }
 //关闭新增弹窗
 function close_add_pop(){
-	$("#add_userinfo_block").css("display","none");
-	clear_popinfo();
+	$("#add_apply_block").css("display","none");
 	$("#black_block").css("display","none");
 }
-//打开菜单修改
-function show_menuUpdate(){
-	$("#as_block").css("display","block");
+//审批弹窗
+function show_approve_pop(){
+	$("#black_block").css("display","block");
+	$("#approve_block").css("display","block");
 }
-//关闭菜单修改
-function close_menuUpdate(){
-	$("#as_block").css("display","none");
+function close_approve_pop(){
+	$("#approve_block").css("display","none");
+	$("#black_block").css("display","none");
 }
 //清除弹窗数据
 function clear_popinfo(){
-	$("#add_userName").val("");
-	$("#add_IDcard").val("");
-	$("#add_phone").val("");
 }
 //查看、修改弹窗显示
 function show_su_pop(){

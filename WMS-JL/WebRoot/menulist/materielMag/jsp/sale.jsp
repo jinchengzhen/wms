@@ -16,7 +16,7 @@
     <!-- 主体页面开始 -->
 	<div class="common-title">
 		<div class="condition table" id="applySearch_block">
-			<span id="title"class="fontB">物料采购</span>
+			<span id="title"class="fontB">产品销售</span>
 		</div>
 		<div class="condition table" id="applySearch_block">
 			<span>申请人：</span>
