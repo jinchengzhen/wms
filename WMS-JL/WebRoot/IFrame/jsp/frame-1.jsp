@@ -13,7 +13,7 @@
 <script type="text/javascript" src="../js/menuControl.js"></script>
 <title>菜单</title>
 </head>
-<body onclick="check_sessionIsOutdate()">
+<body>
 	<div class="tip" id="basePath" basepath=<%= "\""+basePath+"\"" %> style="display: none;"></div>
   <div class="menu font">
   	<div class="menu-title" onclick="showMenu()">功能菜单</div>

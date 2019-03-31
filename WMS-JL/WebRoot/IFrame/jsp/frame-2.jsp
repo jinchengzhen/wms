@@ -23,7 +23,7 @@ div{box-sizing:border-box;word-wrap: break-word;}
 .menublock{cursor:pointer;width:10%;height: 100%;padding: 0.5% 2% 2% 2%;float: left;display:table-cell;vertical-align:middle;text-align:center;border: 4px solid forestgreen;margin-left: 0.5%;background-color: gainsboro; border-radius: 15px;}
 .menublock:hover{border: 4px solid darkslategray;background-color: green;color: white;}
 </style>
-<body onclick="check_sessionIsOutdate()">
+<body>
 	<div class="tip" id="basePath" basepath=<%= "\""+basePath+"\"" %> style="display: none;"></div>
 	<div class="main-block">
 		<div id="menulist"class="menulist-block font">
