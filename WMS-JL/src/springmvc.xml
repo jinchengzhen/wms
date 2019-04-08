@@ -11,11 +11,15 @@
 	<context:component-scan base-package="com.wms.controller.systemControl"></context:component-scan>
 	<context:component-scan base-package="com.wms.controller.funcControl"></context:component-scan>
 	<context:component-scan base-package="com.wms.service"/>
-	<!--  配置视图解析器: 如何把 handler 方法返回值解析为实际的物理视图	-->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="Iframe/jsp/"></property>
-		<property name="suffix" value=".jsp"></property>
+		<property name="prefix" value="/"></property>
+		<property name="suffix" value="/"></property>
 	</bean> 
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+        <property name="defaultEncoding" value="utf-8"/>  
+        <property name="maxUploadSize" value="10485760000"/>  
+        <property name="maxInMemorySize" value="40960"/>  
+     </bean>
 	<!-- 配置视图  BeanNameViewResolver 解析器: 使用视图的名字来解析视图 -->
 	<!-- 通过 order 属性来定义视图解析器的优先级, order 值越小优先级越高 -->
 	<!-- <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">

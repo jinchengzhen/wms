@@ -8,8 +8,11 @@
 <link rel="stylesheet" href="../css/storeMassage.css" type="text/css"></link>
 <link rel="stylesheet" href="../../../component/select2-4.0.1-rc.1/dist/css/select2.min.css">
 <script type="text/javascript" src="../../../component/jquery/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../../../component/jquery.print/jQuery.print.min.js"></script>
 <script type="text/javascript" src="../../../component/select2-4.0.1-rc.1/dist/js/select2.full.min.js"></script>
-<title>物料采购</title>
+<script type="text/javascript" src="../../../component/common/js/common.js"></script>
+<script type="text/javascript" src="../js/storeMassage.js"></script>
+<title>入库通知</title>
 </head>
 <body>
 <div class="common-black" id="black_block"></div>
@@ -50,7 +53,7 @@
 				</thead>
 				<tbody id="goodslistInfo">
 					<tr class="select-tr">
-						<td>1</td><td>010025</td><td>运动鞋</td><td>A-01</td><td>1号库</td><td>2015646</td><td>80</td><td>李四</td><td><span class="option" onclick="show_su_pop()">编辑</span><span class="option" onclick="show_print_pop()">打印标签</span></td>
+						<td>1</td><td>010025</td><td>运动鞋</td><td>A-01</td><td>1号库</td><td>2015646</td><td>80</td><td>李四</td><td><span class="option" onclick="show_su_pop()">编辑</span><span class="option" onclick="generateCode('5612315646','')">打印标签</span></td>
 					</tr>
 				</tbody>
 			</table>
@@ -76,18 +79,23 @@
 			<div class="pop-title-info table"><span class="titletext">标签打印</span></div>
 			<div class="pop-title-quit" id="quit_2"><div class="quit-x" onclick="close_print_pop()"></div></div>
 		</div>
-		<div class="pop-body-block">
-			<table class="addgoodsInfo-table font">
-				<tr><td class="input-name">打印设备:</td><td class="input-value"><input type="text" placeholder="请选择打印机" style="width: 100%;height: 100%;"></td></tr>
-				<tr><td colspan="2">打印预览</td></tr>
-				<tr><td colspan="2"><img src="../../../static/images/login-bg.jpg" class="preview-print"></td></tr>
-				<tr><td class="input-name">打印数量:</td><td class="input-value"><input type="text" style="width: 100%;height: 100%;"></td></tr>
-			</table>
-		</div>
-		<div class="pop-option-block">
-			<input type="button" value="打印" onclick="deal_print()">
-			<span class="space"></span>
-			<input type="button" value="返回" onclick="close_print_pop()">
+		<div class="pop-body-block" id="print_preview_block">
+			<!-- <div id="ele3" class="a">
+                <h3>Element 3</h3>
+                <p class="no-print">
+                Some more random text that is not to be printed.
+                </p>
+                <button class="print-link" onclick="jQuery.print('#ele3')">
+                Print this (jQuery.print('#ele3'))
+                </button>
+            </div> -->
+			<div class="no-print">打印预览</div>
+			<div><img id="print_preview" src="" class="preview-print"></div>
+			<div class="pop-option-block no-print">
+				<input type="button" class="no-print" value="打印" class="print-link"onclick="jQuery.print('#print_preview_block')">
+				<span class="space" calss="no-print"></span>
+				<input type="button" class="no-print" value="返回" onclick="close_print_pop()">
+			</div>
 		</div>
 	</div>
 	<!-- 打印标签结束 -->
@@ -123,6 +131,4 @@
 	<!-- 快速入库结束 -->
 	
 </body>
-<script type="text/javascript" src="../../../component/common/js/common.js"></script>
-<script type="text/javascript" src="../js/storeMassage.js"></script>
 </html>

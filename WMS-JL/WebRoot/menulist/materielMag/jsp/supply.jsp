@@ -87,17 +87,17 @@
 			<div class="pop-title-quit" id="quit_2"><div class="quit-x" onclick="close_add_pop()"></div></div>
 		</div>
 		<div class="pop-body-block">
-			<form method="post" onsubmit="return false"enctype="multipart/form-data">
+			<form id="subfile" method="post"  onsubmit="return false" enctype="multipart/form-data">
 			<table class="addgoodsInfo-table font">
 				<tr>
 					<td>若无申请模版，请先下载模版！</td><td></td>
 				</tr>
 				<tr>
-					<td><a href="">申请模版下载</a></td>
+					<td><a id="model_download"href="">申请模版下载</a></td>
 				</tr>
 				<tr>
 					<td><input type="text" name="fileShowName" id="fileShowName"style="width:79%;height:4.5%;background-image:url(../../../static/images/fujian1.png);background-repeat:no-repeat;background-size:2.3%;background-position-x:0.3%;background-position-y:30.3%;cursor: pointer;"placeholder="&nbsp;&nbsp;&nbsp;&nbsp;上传文件" msg="上传文件"onclick="$('#submitFile').click();" readonly="readonly" /></td>
-					<td><input id="submitFile" type="file" style="display: none;"onchange="upfile()"></td>
+					<td><input id="submitFile" name="submitFile"type="file" style="display: none; "required="false" onchange="upfile()"></td>
 				</tr>
 			</table>
 			</form>
