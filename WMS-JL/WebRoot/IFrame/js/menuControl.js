@@ -17,13 +17,13 @@ function initmenu(){
 			var menuobj = jsonarray[i];
 			if(menuobj != undefined){
 				menuid.push("tmenu-"+i);
-				htmlstr_1 += "<li url=\""+menuobj.menuUrl+"\" onclick=\"magmenu('tmenu-"+i+"')\">"+menuobj.menuName;
+				htmlstr_1 += "<li id='fmenu-"+i+"' url=\""+menuobj.menuUrl+"\" onclick=\"magmenu("+i+")\">"+"▶"+menuobj.menuName;
 				htmlstr_2 += "<div class=\"menutitle\"><div class=\"menuparent\" url=\""+menuobj.menuUrl+"\" >"+menuobj.menuName+"</div>";
 				if(menuobj.childmenu != null){
 					htmlstr_1 += "<ul id=\"tmenu-"+i+"\" state='0'>";
 					for(var l = 0;l < menuobj.childmenu.length;l++){
 						var childobj = menuobj.childmenu[l];
-						htmlstr_1 += "<li onclick='showConcrete1(\""+childobj.menuUrl+"\",\""+"tmenu-"+i+"\")'>"+childobj.menuName;
+						htmlstr_1 += "<li onclick='showConcrete1(\""+childobj.menuUrl+"\",\""+i+"\")'>"+childobj.menuName;
 						htmlstr_2 += "<div class=\"menublock\" onclick='showConcrete2(\""+childobj.menuUrl+"\",\""+"tmenu-"+i+"\")'>"+childobj.menuName+"</div>";
 					}
 					htmlstr_1 += "</ul>";
@@ -51,20 +51,25 @@ function showMenu(){
 	window.parent.document.getElementById("mainFrame").src = basepath+'IFrame/jsp/frame-2.jsp' ;//获取父级元素
 }
 function magmenu(id){
-	var state = $("#"+id).attr("state");
+	var tid = "tmenu-"+id;
+	var fid = "fmenu-"+id;
+	var state = $("#"+tid).attr("state");
 	if(state == "0"){
-		$("#"+id).attr("state","1");
-		$("#"+id).css("display","block");
-		setmenuHidden(id);
+		setmenuHidden(tid);
+		$("#"+tid).attr("state","1");//▼
+		$("#"+fid).html($("#"+fid).html().replace(/▶/ig,'▼'));
+		$("#"+tid).css("display","block");
 	}else if(state == "1"){
-		$("#"+id).attr("state","0");
-		$("#"+id).css("display","none");
+		$("#"+tid).attr("state","0");
+		$("#"+fid).html($("#"+fid).html().replace(/▼/ig,'▶'));
+		$("#"+tid).css("display","none");
 	}
 }
 function setmenuHidden(id){
 	for(var i = 0; i < menuid.length; i++){
 		if(menuid[i] != id){
 			$("#"+menuid[i]).attr("state","0");
+			$("#fmenu-"+i).html($("#fmenu-"+i).html().replace(/▼/ig,'▶'));
 			$("#"+menuid[i]).css("display","none");
 		}
 	}

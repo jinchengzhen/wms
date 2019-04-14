@@ -54,7 +54,7 @@ public enum SQLOption implements ISQLParameters{
 		@Override
 		public String toSQL(String... params) {
 			if(params.length == 2) {
-				return params[0]+" != "+params[1];
+				return params[0]+" <> "+params[1];
 			}else {
 				return "";
 			}

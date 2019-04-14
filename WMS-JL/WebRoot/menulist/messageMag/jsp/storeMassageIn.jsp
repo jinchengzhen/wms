@@ -79,22 +79,13 @@
 			<div class="pop-title-info table"><span class="titletext">标签打印</span></div>
 			<div class="pop-title-quit" id="quit_2"><div class="quit-x" onclick="close_print_pop()"></div></div>
 		</div>
-		<div class="pop-body-block" id="print_preview_block">
-			<!-- <div id="ele3" class="a">
-                <h3>Element 3</h3>
-                <p class="no-print">
-                Some more random text that is not to be printed.
-                </p>
-                <button class="print-link" onclick="jQuery.print('#ele3')">
-                Print this (jQuery.print('#ele3'))
-                </button>
-            </div> -->
+		<div class="pop-body-block" >
 			<div class="no-print">打印预览</div>
 			<div><img id="print_preview" src="" class="preview-print"></div>
 			<div class="pop-option-block no-print">
-				<input type="button" class="no-print" value="打印" class="print-link"onclick="jQuery.print('#print_preview_block')">
-				<span class="space" calss="no-print"></span>
-				<input type="button" class="no-print" value="返回" onclick="close_print_pop()">
+				<input type="button" value="打印" class="print-link"onclick="jQuery.print('#print_preview')">
+				<span class="space"></span>
+				<input type="button" value="返回" onclick="close_print_pop()">
 			</div>
 		</div>
 	</div>

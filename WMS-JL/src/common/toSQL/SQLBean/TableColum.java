@@ -51,6 +51,9 @@ public class TableColum {
 	public String getSingleColum(int num) {
 		return list.get(num);
 	}
+	public String getSingleColumWithQuotes(int num) {
+		return "\""+list.get(num)+"\"";
+	}
 	public ColumElement_N getSingleColum_N(int num) {
 		return list_n.get(num);
 	}

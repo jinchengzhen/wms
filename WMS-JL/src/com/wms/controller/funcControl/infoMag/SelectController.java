@@ -1,5 +1,6 @@
 package com.wms.controller.funcControl.infoMag;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.wms.dictloader.Dictloader_TableInfo;
 import com.wms.manage.MenuManage;
 import com.wms.service.SelectService;
 
@@ -139,5 +141,30 @@ public class SelectController {
 		String unitCode = session.getAttribute("unitCode").toString();
 		Map<String,Object> map = selectser.selectInventlimit(storeID, a, b, unitCode);
 		return map;
+	}
+	//查询申请
+	@RequestMapping("/applylimitpage")
+	@ResponseBody
+	public Map<String,Object> applylimit(
+			@RequestParam("apply") String applyID,
+			@RequestParam("applyType") String applyType,
+			@RequestParam("state") String state,	
+			@RequestParam("currpage") String currpage,	
+			@RequestParam("pagesize") String pagesize,
+			HttpSession session){
+		int a = 0,b=0;
+		if(!currpage.isEmpty()) {
+			a = Integer.parseInt(currpage);
+		}
+		if(!pagesize.isEmpty()) {
+			b = Integer.parseInt(pagesize);
+		}
+		String unitCode = session.getAttribute("unitCode").toString();
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put(Dictloader_TableInfo.applyColums.getSingleColumWithQuotes(9), unitCode);
+		map.put(Dictloader_TableInfo.applyColums.getSingleColumWithQuotes(1), applyType);
+		map.put(Dictloader_TableInfo.applyColums.getSingleColumWithQuotes(0), applyID);
+		Map<String,Object> result = selectser.selectApply(map,a,b,state);
+		return result;
 	}
 }

@@ -1,5 +1,6 @@
 package com.wms.controller.funcControl.infoMag;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.wms.dictloader.Dictionary;
 import com.wms.service.UpdateService;
 
 @RequestMapping(value = "/update",method = RequestMethod.POST,
@@ -63,6 +65,25 @@ public class UpdateController {
 		valueMap.put("userAut", userAut);
 		valueMap.put("workcontent", workcontent);
 		Map<String,Object> map = updateser.updateUser(expMap,valueMap);
+		return map;
+	}
+	//修改用户权限
+	@RequestMapping("/approve")
+	@ResponseBody
+	public Map<String,Object> approve(
+			@RequestParam("applyNumber") String applyNumber,
+			@RequestParam("result") String state,
+			@RequestParam("remark") String context,
+			HttpSession session			){
+		Map<String,Object> expMap = new HashMap<String, Object>();
+		expMap.put("applyNumber", applyNumber);
+		expMap.put("unitCode", session.getAttribute("unitCode").toString());
+		Map<String,Object> valueMap = new HashMap<String, Object>();
+		valueMap.put("state", state);
+		valueMap.put("context", context);
+		valueMap.put("approvedate", Dictionary.df_DAY.format(new Date()));
+		valueMap.put("approveID", session.getAttribute("userID").toString());
+		Map<String,Object> map = updateser.updateApprove(expMap,valueMap);
 		return map;
 	}
 }

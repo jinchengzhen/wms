@@ -16,6 +16,7 @@ public class Dictloader_TableInfo {
 	public static TableColum unitColums;//单位表
 	public static TableColum menuColums;//菜单表
 	public static TableColum inventoryColums;//库存表
+	public static TableColum applyColums;//申请表
 //	private static TableColum unitColum;
 	//初始化字典
 	public static void getDictInfo() {
@@ -26,23 +27,8 @@ public class Dictloader_TableInfo {
 		goodsColums = new TableColum(Constant_Table.goodsInfo);//货品表
 		storeColums = new TableColum(Constant_Table.storeInfo);//仓库表
 		inventoryColums = new TableColum(Constant_Table.inventory);//库存表
+		applyColums = new TableColum(Constant_Table.applyRecord);//申请表
 	}
-	//获取表字段
-//	public static TableColum getUnitColum() {
-//		return unitColum;
-//	}
-//	public static TableColum getUserColum() {
-//		return userColum;
-//	}
-//	public static TableColum getMenuColum() {
-//		return menuColum;
-//	}
-//	public static TableColum getGoodsColum() {
-//		return goodsColum;
-//	}
-//	public static TableColum getStoreColum() {
-//		return storeColum;
-//	}
 }
 class MyTimerTask_Table extends TimerTask{
 	private static Logger log = Logger.getLogger(MyTimerTask_Table.class);

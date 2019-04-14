@@ -128,21 +128,34 @@ public class InsertService {
 			TableBean table = new TableBean(Dictloader_TableInfo.inventoryColums.getTableName(), storemap);
 			map = insertresult(new InsertStatement(table));
 		}
-		return null;
+		return map;
 	}
 	
+	//新增申请
+	public Map<String, Object> addapply(Map<String, Object> map, HttpSession session) {
+		String applyID = session.getAttribute("userID").toString();
+		map.put("state", "0");
+		map.put("unitCode", session.getAttribute("unitCode").toString());
+		map.put("applyID", applyID);
+		map.put("applydate", Dictionary.df_DAY.format(new Date()));
+		map.put("applyNumber", Dictionary.getRandom(6)+(System.currentTimeMillis()%1000000));
+		TableBean table = new TableBean(Dictloader_TableInfo.applyColums.getTableName(), map);
+		return insertresult(new InsertStatement(table));
+	}
 	
 	//公共方法
-		//新增结果返回
-		public Map<String, Object> insertresult(InsertStatement insert){
-			Map<String,Object> map = new HashMap<String, Object>();
-			if(insert.excute()) {
-				map.put("state", "1");
-				map.put("message", "新增成功！");
-			}else {
-				map.put("state", "0");
-				map.put("message", "新增失败！");
-			}
-			return map;
+	//新增结果返回
+	public Map<String, Object> insertresult(InsertStatement insert){
+		Map<String,Object> map = new HashMap<String, Object>();
+		if(insert.excute()) {
+			map.put("state", "1");
+			map.put("message", "新增成功！");
+		}else {
+			map.put("state", "0");
+			map.put("message", "新增失败！");
 		}
+		return map;
+	}
+
+
 }

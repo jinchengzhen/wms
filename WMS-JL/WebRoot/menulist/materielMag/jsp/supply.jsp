@@ -16,7 +16,7 @@
     <!-- 主体页面开始 -->
 	<div class="common-title">
 		<div class="condition table" id="applySearch_block">
-			<span id="title"class="fontB">物料采购</span>
+			<span id="title"class="fontB"val="purcharse">物料采购</span>
 		</div>
 		<div class="condition table" id="applySearch_block">
 			<span>申请人：</span>
@@ -47,9 +47,9 @@
 			<span style="float: right;    width: 2%;    height: 100%;"></span>
 			<span class="import" onclick="">批量导入</span>
 			<span style="float: right;    width: 10%;    height: 100%;"></span>
-			<span id="all"class="select-opntion" onclick="select_status($(this))">全部</span>
-			<span id="noResole"class="select-opntion" onclick="select_status($(this))">待审批</span>
-			<span id="resoled"class="select-opntion" onclick="select_status($(this))">已审批</span>
+			<span id="all"class="select-opntion" val = "all"onclick="select_status($(this))">全部</span>
+			<span id="noResole"class="select-opntion" val="todo" onclick="select_status($(this))">待审批</span>
+			<span id="resoled"class="select-opntion" val="done"onclick="select_status($(this))">已审批</span>
 		</div>
 		<div class="goodslist">
 			<table>
@@ -60,7 +60,7 @@
 				</thead>
 				<tbody id="goodslistInfo">
 					<tr class="select-tr">
-						<td>1</td><td>010025</td><td>运动鞋</td><td>鞋/帽</td><td>A-01</td><td>生产部</td><td>451512242</td><td><span class="option" onclick="show_su_pop()">编辑</span><span class="option" onclick="show_approve_pop()">审批</span></td>
+						<td>1</td><td>申请人</td><td>申请时间</td><td>状态</td><td>审批人</td><td>审批时间</td><td>附件</td><td><span class="option" onclick="show_approve_pop()">审批</span></td>
 					</tr>
 				</tbody>
 			</table>
@@ -96,8 +96,8 @@
 					<td><a id="model_download"href="">申请模版下载</a></td>
 				</tr>
 				<tr>
-					<td><input type="text" name="fileShowName" id="fileShowName"style="width:79%;height:4.5%;background-image:url(../../../static/images/fujian1.png);background-repeat:no-repeat;background-size:2.3%;background-position-x:0.3%;background-position-y:30.3%;cursor: pointer;"placeholder="&nbsp;&nbsp;&nbsp;&nbsp;上传文件" msg="上传文件"onclick="$('#submitFile').click();" readonly="readonly" /></td>
-					<td><input id="submitFile" name="submitFile"type="file" style="display: none; "required="false" onchange="upfile()"></td>
+					<td><input type="text" name="fileShowName" id="fileShowName"style="width:79%;height:4.5%;background-image:url(../../../static/images/fujian1.png);background-repeat:no-repeat;background-size:2.3%;background-position-x:0.3%;background-position-y:30.3%;cursor: pointer;"placeholder="&nbsp;&nbsp;&nbsp;&nbsp;上传文件" onclick="$('#submitFile').click();" readonly="readonly" /></td>
+					<td><input id="submitFile" name="submitFile"type="file" style="display: none; "onchange="$('#fileShowName').val($('#submitFile').val());"></td>
 				</tr>
 			</table>
 			</form>
@@ -120,50 +120,22 @@
 			<form method="post" onsubmit="return false"enctype="multipart/form-data">
 			<table class="addgoodsInfo-table font">
 				<tr>
-					<td>通过审批：</td><td><input id="result_yes" style="width: 26%;height: 18px;"type="radio" name="approve_result" value="yes" checked="checked"><label for="result_yes">是</label></td>
+					<td>通过审批：</td><td><input id="result_yes" style="width: 26%;height: 18px;"type="radio" name="approve_result" value="1" checked="checked"><label for="result_yes">是</label></td>
 					<td><input id="result_no" style="width: 26%;height: 18px;"type="radio" name="approve_result" value="no"><label for="result_no">否</label></td>
 				</tr>
-				<tr><td colspan="1"><span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：</span></td><td colspan="5"><textarea id="add_remark"cols="2" class="font"></textarea></td>
+				<tr><td colspan="1"><span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：</span></td><td colspan="2"><textarea id="add_remark"cols="2" class="font"></textarea></td>
 				</tr>
 			</table>
 			</form>
 		</div>
 		<div class="pop-option-block">
-			<input type="button" value="确认" onclick="deal_approve()">
+			<input id="ensure_approve" type="button" value="确认" onclick="">
 			<span class="space"></span>
 			<input type="button" value="取消" onclick="close_approve_pop()">
 		</div>
 	</div>
 	<!-- 审批弹窗结束 -->
 	
-	<!-- 查看/修改弹窗开始 -->
-	<div class="pop-window-1" id="su_block">
-		<div class="pop-title-block">
-			<div class="pop-title-info table"><span id="pop_title_info" class="titletext">货品详细信息</span></div>
-			<div class="pop-title-quit" id="quit_2"><div class="quit-x" onclick="close_su_pop()"></div></div>
-		</div>
-		<div class="pop-body-block">
-			<table class="addgoodsInfo-table">
-				<tr><td class="input-name"><span>申请人：</span></td><td class="input-value"><input id="su_goodsName" type="text" ></td>
-					<td class="input-name"><span>申请时间：</span></td><td class="input-value"><input id="su_goodsID" type="text" ></td>
-				</tr>
-				<tr><td class="input-name"><span>审批人：</span></td><td class="input-value"><input id="su_typeName" type="text" ></td>
-					<td class="input-name"><span>审批时间：</span></td><td class="input-value"><input id="su_storage" type="text" ></td>
-					<td class="input-name"><span>审批状态：</span></td><td class="input-value"><input id="su_simpleName" type="text" ></td>
-				</tr>
-				<tr><td class="input-name"><span>附&nbsp;件：</span></td><td class="input-value"><input id="su_goodsSource" type="text" ></td>
-				</tr>
-				<tr><td colspan="1"><span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：</span></td><td colspan="5"><textarea id="add_remark"cols="2" class="font"></textarea></td>
-				</tr>
-			</table>
-		</div>
-		<div class="pop-option-block">
-			<input type="button" value="确认" onclick="update_userInfo()">
-			<span class="space" id="space_su"></span>
-			<input type="button" value="返回" onclick="close_su_pop()">
-		</div>
-	</div>
-	<!-- 查看/修改弹窗结束 -->
 </body>
 <script type="text/javascript" src="../../../component/common/js/common.js"></script>
 <script type="text/javascript" src="../js/supply.js"></script>

@@ -19,6 +19,7 @@
 	<div class="common-title">
 		<div class="condition table">
 			<span class="space"></span>
+			<span class="fontB">库存信息</span>
 			<span class="space"></span>
 		</div>
 		<div class="condition table">
@@ -86,7 +87,7 @@
 	<!-- 新增弹窗 -->
 	<div class="pop-window-1" id="add_inventoryinfo_block">
 		<div class="pop-title-block">
-			<div class="pop-title-info table"><span class="titletext">新增库房</span></div>
+			<div class="pop-title-info table"><span class="titletext">新增库存</span></div>
 			<div class="pop-title-quit" id="quit_2"><div class="quit-x" onclick="close_add_pop()"></div></div>
 		</div>
 		<div class="pop-body-block">
@@ -114,68 +115,4 @@
 	<!-- 新增弹窗结束 -->
 	
 </body>
-<script type="text/javascript">
-$(function(){
-	initData();
-});
-function initData(){
-	
-	$.fn.select2.defaults.set('width', '70%');
-	var data1 = null/* [{ id: 0, text: '常温' }, { id: 1, text: '冷藏' }, { id: 2, text: '冷冻' },] */;
-	var data2 = null/* [{ id: 0, text: '供货商' }, { id: 1, text: '生产经营' },] */;
-	var data3 = new Array();
-	var data4 = new Array();
-	for(var i=0;i<1000;i++){
-		data3.push({id:(i+1),text:""+(i+1)+"天"});
-	}
-	for(var i=0;i<36;i++){
-		data3.push({id:1000+(i+1),text:""+(i+1)+"月"});
-	}
-	for(var i=0;i<100;i++){
-		data3.push({id:2000+(i+1),text:""+(i+1)+"年"});
-	}
-	var url = "/JIN-WMS/infoMag/initData.spring";
-	$.post(url,{},function(data){
-		var jsonobj = JSON.parse(data);
-		var dataArray = jsonobj.type;
-		data1 = jsonobj.save;
-		data2 = jsonobj.source;
-		for(var i = 0;i < dataArray.length;i++){
-			data4.push({id:dataArray[i].id,text:dataArray[i].name});
-		}
-		$("#search_typeName").select2({
-		  data: data4,
-		  placeholder:'请选择货品类别',
-		  width: '60%',
-		  allowClear:true
-		});
-		$("#add_typeName").select2({
-			  data: data4,
-			  placeholder:'请选择货品类别',
-			  allowClear:true
-			});
-		$("#add_storage").select2({
-		  data: data1,
-		  placeholder:'请选择存储条件',
-		  allowClear:true
-		});
-		$("#add_goodsSource").select2({
-		  data: data2,
-		  placeholder:'请选择货源',
-		  allowClear:true
-		});
-		$("#search_goodsSource").select2({
-		  data: data2,
-		  placeholder:'请选择货源',
-		  width: '60%',
-		  allowClear:true
-		});
-		$("#add_limitTerm").select2({
-		  data: data3,
-		  placeholder:'请选择有效期限',
-		  allowClear:true
-		});
-	});
-}
-</script>
 </html>

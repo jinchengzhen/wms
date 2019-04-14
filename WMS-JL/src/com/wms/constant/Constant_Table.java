@@ -10,4 +10,5 @@ public interface Constant_Table {
 	TableElement goodsInfo = new TableElement("wms_sys_goodsInfo", "g"); 
 	TableElement storeInfo = new TableElement("wms_sys_storeInfo", "s"); 
 	TableElement inventory = new TableElement("wms_store_inventory", "i"); 
+	TableElement applyRecord = new TableElement("wms_apply_record", "a"); 
 }

@@ -77,6 +77,7 @@ public class ExportFileController {
 	             MultipartFile file = multiRequest.getFile(it.next());  
 	             String fileName = file.getOriginalFilename();  
 	             String localPath = path + fileName; 
+	             String webpath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/upload/record/"+fileName;
 	             //创建一个新的文件对象，创建时需要一个参数，参数是文件所需要保存的位置
 	             File newFile = new File(localPath);  
 	             if (newFile.getParentFile() != null || !newFile.getParentFile().isDirectory()) {
@@ -87,9 +88,11 @@ public class ExportFileController {
 	             try {
 					file.transferTo(newFile);
 					sb.append(fileName+"上传成功！");
+					result.put("furl", webpath);
 				} catch (IllegalStateException | IOException e) {
 					logger.warn(e.getMessage());
 					sb.append(fileName+"上传失败！");
+					result.put("furl", "");
 				}
 	         }
 	     }

@@ -82,14 +82,23 @@ public class TableBean {
 	}
 	public void addSimpleExpression(Map<String,Object> map) {
 		for(Entry<String, Object> entry : map.entrySet()) {
-			String rightExp = "";
-			if(entry.getValue() instanceof String) {
-				rightExp = "'"+entry.getValue().toString()+"'";
-			}else {
-				rightExp = entry.getValue().toString();
+			if(entry.getValue() != null && !"".equals(entry.getValue().toString())) {
+				String rightExp = "";
+				String leftExp = "";
+				if(entry.getValue() instanceof String) {
+					rightExp = "'"+entry.getValue().toString()+"'";
+				}else {
+					rightExp = entry.getValue().toString();
+				}
+				
+				if(entry.getKey().lastIndexOf("\"") > 0) {
+					leftExp = entry.getKey();
+				}else {
+					leftExp = "\""+entry.getKey()+"\"";
+				}
+				IExpressionElement expression = new ExpressionElement_Two(leftExp, SQLOption.equals, rightExp, Relation.AND, false);
+				expressionlist.add(expression); 
 			}
-			IExpressionElement expression = new ExpressionElement_Two("\""+entry.getKey()+"\"", SQLOption.equals, rightExp, Relation.AND, false);
-			expressionlist.add(expression); 
 		}
 	}
 	//gets and sets

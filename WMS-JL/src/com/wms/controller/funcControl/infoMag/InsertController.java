@@ -120,4 +120,17 @@ public class InsertController {
 		Map<String, Object> map = insertser.addinventory(storemap,session);
 		return map;
 	}
+	//新增申请
+	@RequestMapping("/apply")
+	@ResponseBody
+	public Map<String,Object> addapply(
+			@RequestParam("applyfile") String applyfile	,
+			@RequestParam("applyType") String applyType	,
+			HttpSession session){
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("applyfile",applyfile );
+		map.put("applyType",applyType );
+		Map<String, Object> result = insertser.addapply(map,session);
+		return result;
+	}
 }
