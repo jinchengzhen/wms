@@ -1,4 +1,19 @@
-.topblock{width: 1760px;height:780px;background-color:rgba(21, 35, 21, 0.3);}
-.echartdiv{float: left;}
-#left{width: 65%;height:100%;}
-#right{width: 35%;height:100%;}
+.topblock {
+	width: 1760px;
+	height: 780px;
+	background-color: rgba(21, 35, 21, 0.3);
+}
+
+.echartdiv {
+	float: left;
+}
+
+#left {
+	width: 65%;
+	height: 100%;
+}
+
+#right {
+	width: 35%;
+	height: 100%;
+}

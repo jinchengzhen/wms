@@ -18,6 +18,7 @@ import common.toSQL.SQLParameters.Relation;
 import common.toSQL.SQLParameters.SQLMethods;
 import common.toSQL.SQLParameters.SQLOption;
 import common.toSQL.SQLStatement.SelectStatement;
+import common.util.StringUtil;
 
 
 
@@ -170,19 +171,16 @@ public class SelectService {
 		tabletotal.addColum(SQLMethods.COUNT, Dictloader_TableInfo.storeColums.getSingleColum(0));
 		TableBean table = new TableBean(Dictloader_TableInfo.storeColums.getTableName(), Dictloader_TableInfo.storeColums.getMultiColum(0,1,2,3,4,7));
 		if(storeID != null && !"".equals(storeID)) {
-			//模糊查询库房编号
-			ExpressionElement_Two expression = new ExpressionElement_Two(Dictloader_TableInfo.storeColums.getSingleColumWithQuotes(0), SQLOption.likeAfter, storeID, Relation.AND, false);
+			ExpressionElement_Two expression = new ExpressionElement_Two(Dictloader_TableInfo.storeColums.getSingleColumWithQuotes(0), SQLOption.equals, StringUtil.ToPGValString(storeID), Relation.AND, false);
 			tabletotal.addExpression(expression);
 			table.addExpression(expression);
 		}
 		if(managerID != null && !"".equals(managerID)) {
-			//模糊查询负责人
-			ExpressionElement_Two expression = new ExpressionElement_Two(Dictloader_TableInfo.storeColums.getSingleColumWithQuotes(7), SQLOption.likeAfter, managerID, Relation.AND, false);
+			ExpressionElement_Two expression = new ExpressionElement_Two(Dictloader_TableInfo.storeColums.getSingleColumWithQuotes(4), SQLOption.equals, StringUtil.ToPGValString(managerID), Relation.AND, false);
 			tabletotal.addExpression(expression);
 			table.addExpression(expression);
 		}
-		unitCode = "'"+unitCode+"'";
-		ExpressionElement_Two expression = new ExpressionElement_Two(Dictloader_TableInfo.storeColums.getSingleColumWithQuotes(6), SQLOption.equals, unitCode, Relation.AND, false);
+		ExpressionElement_Two expression = new ExpressionElement_Two(Dictloader_TableInfo.storeColums.getSingleColumWithQuotes(6), SQLOption.equals, StringUtil.ToPGValString(unitCode), Relation.AND, false);
 		tabletotal.addExpression(expression);
 		table.addExpression(expression);
 		SelectStatement selecttotal = new SelectStatement(tabletotal);
